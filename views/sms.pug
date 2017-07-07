@@ -1,0 +1,30 @@
+extends layout
+
+block content
+  h1= '三竹簡訊'
+  div(class='panel panel-default')
+    div(class='panel-body')
+      p #{title}
+  
+  ul(class='nav nav-tabs')
+    each val, index in postList
+      
+      if(index==0)
+        li(class="active")
+          a(data-toggle='tab', href=val.link)  #{val.name}
+      else
+        li
+          a(data-toggle='tab', href=val.link)  #{val.name}
+  
+  div(class="tab-content")
+    each val, index in postList
+      if(index==0)
+        div(id=val.link, class="tab-pane fade in active")
+          h3 #{val.name}
+          p
+            button(type="button" class="btn btn-primary btn-lg" onclick="on_sms()") Send Message
+      else
+        div(id=val.link, class="tab-pane fade")
+          h3 #{val.name}
+          p
+            button(type="button" class="btn btn-primary btn-lg" onclick="on_sms()") Send Message
